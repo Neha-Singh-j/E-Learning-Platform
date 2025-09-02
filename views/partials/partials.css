@@ -1,0 +1,112 @@
+
+
+
+.navbar {
+  background-color: #0d1117 !important; /* Dark theme */
+  padding: 0.8rem 1rem;
+}
+
+.navbar .brand-text {
+  font-size: 1.3rem;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.navbar .nav-link {
+  color: #bbb !important;
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #fff !important;
+}
+
+.navbar .btn-primary {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  border: none;
+}
+
+.navbar .btn-primary:hover {
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+}
+
+.navbar .btn-outline-light {
+  border: 1px solid #bbb;
+  color: #fff;
+}
+
+.navbar .btn-outline-light:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Push content down below navbar */
+.hero-section {
+  padding-top: 6rem; /* Adjust to your liking */
+}
+
+/* Optional: make navbar taller with more breathing space */
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
+
+/* Footer */
+/* .footer {
+    padding: 2rem 1rem;
+    background: #091332; 
+
+  color: #ccc;
+  font-size: 0.95rem;
+} */
+
+.footer {
+  background: #1a1a1a; /* solid dark fallback */
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  color: #f1f1f1;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.footer h6, .footer h3 {
+  color: #fff;
+}
+
+.footer-link {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-link:hover {
+  color: #4f46e5; /* indigo hover */
+}
+
+/* Social Media */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1a1f2b;
+  color: #ccc;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+.social-link:hover {
+  background: #4f46e5;
+  color: #fff;
+}
+

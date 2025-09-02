@@ -1,0 +1,152 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<style>
+  body {
+    background-color: blue; /* light blue background */
+    padding-top:7rem;
+    color: #fdfdfd;
+  }
+
+  /* .container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  } */
+
+  h1 {
+    color: #000;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .card {
+    border: none;
+    border-radius: 15px;
+    background-color: #111827;
+    color: #f9fafb;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+  }
+
+  .form-label {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .form-control {
+    background-color:white;
+    color: black;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .form-control:focus {
+    background-color: rgb(243, 172, 172);
+    color: black;
+    box-shadow: 0 0 0 2px #2563eb;
+  }
+
+  #add-syllabus {
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .btn-primary {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+  }
+</style>
+
+<div class="container">
+  <h1>Add New Course</h1>
+
+  <div class="card ">
+    <form action="/courses" method="POST">
+
+      <!-- Title -->
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+
+      <!-- Slug -->
+      <div class="mb-3">
+        <label class="form-label">Slug</label>
+        <input type="text" name="slug" placeholder="machine-learning-course" class="form-control" required>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" rows="4" required></textarea>
+      </div>
+
+      <!-- Price & Duration -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Price</label>
+          <input type="number" name="price" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Duration (e.g. 5h 30m)</label>
+          <input type="text" name="duration" class="form-control">
+        </div>
+      </div>
+
+      <!-- Thumbnail -->
+      <div class="mb-3">
+        <label class="form-label">Thumbnail URL</label>
+        <input type="text" name="thumbnail" class="form-control" placeholder="https://example.com/image.jpg">
+      </div>
+
+      <!-- Syllabus -->
+      <div class="mb-3">
+        <label class="form-label">Syllabus</label>
+        <div id="syllabus-fields">
+          <div class="d-flex mb-2">
+            <input type="text" name="syllabus[0][title]" class="form-control me-2" placeholder="Topic Title" required>
+            <input type="text" name="syllabus[0][content]" class="form-control" placeholder="Topic Content" required>
+          </div>
+        </div>
+        <button type="button" id="add-syllabus" class="btn btn-outline-light btn-sm">+ Add More</button>
+      </div>
+
+      <!-- Tags -->
+      <div class="mb-3">
+        <label class="form-label">Tags (comma separated)</label>
+        <input type="text" name="tags" class="form-control" placeholder="e.g. JavaScript, Web Development">
+      </div>
+
+      <!-- Seats -->
+      <div class="mb-3">
+        <label class="form-label">Seats</label>
+        <input type="number" name="seats" class="form-control" placeholder="e.g. 50">
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary w-100">
+        Create Course
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Add syllabus fields dynamically
+  let syllabusIndex = 1;
+  document.getElementById('add-syllabus').addEventListener('click', function() {
+    const container = document.getElementById('syllabus-fields');
+    const div = document.createElement('div');
+    div.classList.add('d-flex', 'mb-2');
+    div.innerHTML = `
+      <input type="text" name="syllabus[${syllabusIndex}][title]" class="form-control me-2" placeholder="Topic Title" required>
+      <input type="text" name="syllabus[${syllabusIndex}][content]" class="form-control" placeholder="Topic Content" required>
+    `;
+    container.appendChild(div);
+    syllabusIndex++;
+  });
+</script>
+
+<%- include("../partials/footer") %>

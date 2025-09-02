@@ -1,9 +1,13 @@
-<%-include('./partials/header')%>
-<%-include('./partials/navbar')%>
-<%-include('./partials/flash')%>
+<%- include('./partials/header') %>
+<%- include('./partials/navbar') %>
+<%- include('./partials/flash') %>
 
-<div class="alert alert-danger" role="alert" style="margin-top: 120px;">
-    <%=err%>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh; margin-top: 80px;">
+  <div class="card shadow-lg border-danger text-center p-4" style="max-width: 500px; width: 100%;">
+    <h2 class="text-danger mb-3"><i class="fas fa-exclamation-triangle"></i> Oops! Something went wrong</h2>
+    <p class="text-muted"><%= err %></p>
+    <a href="/" class="btn btn-primary mt-3">Go Back Home</a>
+  </div>
 </div>
 
-<%-include('./partials/footer')%>
+<%- include('./partials/footer') %>

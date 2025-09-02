@@ -1,7 +1,7 @@
 
-# 🛍️ **Shopiko** – Full Stack E-Commerce Web App
+# 🛍️ **E-Learning** – Full Stack E-Commerce Web App
 
-**Shopiko** is a complete and modern **e-commerce platform** designed to provide a smooth online shopping experience — from browsing and cart management to secure checkout. This project mimics all essential real-world e-commerce features, making it ideal for learning full-stack development or showcasing your portfolio.
+**E-Learning** is a complete and modern **e-commerce platform** designed to provide a smooth online shopping experience — from browsing and cart management to secure checkout. This project mimics all essential real-world e-commerce features, making it ideal for learning full-stack development or showcasing your portfolio.
 
 <!--
 ## Live Demo : Click Here 👉 https://shopiko-1.onrender.com
@@ -14,13 +14,13 @@ https://shopiko-1.onrender.com
 ## 📸 Screenshots
 
 **Home Page**
-![Home Page](https://github.com/user-attachments/assets/ad6f0a40-c957-44cf-a486-18de548f03b4)
+![Home Page](https://github.com/user-attachments/assests/ad6f0a40-c957-44cf-a486-18de548f03b4)
 
 **Products Page**
-![Products Page](https://github.com/user-attachments/assets/c44215da-0ecc-4050-83b4-ef71d2912ebd)
+![Products Page](https://github.com/user-attachments/assests/c44215da-0ecc-4050-83b4-ef71d2912ebd)
 
 **Cart Page**
-![Cart Page](https://github.com/user-attachments/assets/789dc700-b421-41cb-baa0-f68bc10e5766)
+![Cart Page](https://github.com/user-attachments/assests/789dc700-b421-41cb-baa0-f68bc10e5766)
 
 ---
 
@@ -63,8 +63,8 @@ https://shopiko-1.onrender.com
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/shopiko.git
-cd shopiko
+git clone https://github.com/your-username/E-Learning.git
+cd E-Learning
 
 # 2. Install dependencies
 npm install

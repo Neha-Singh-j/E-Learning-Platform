@@ -1,174 +1,145 @@
-:root{
-    --main-color: #0077b6;
-}
-main{
-    margin-top: 5.5rem;
-}
-
-.img{
-    height: 300px;
-    width: 100%;
-
-}
-
-.product-card .btnn{
-    background-color: var(--main-color) ;
-}
-
-/* css of whole web page */
-/* theme.css */
 :root {
-    --primary-gradient: linear-gradient(to right, #6a11cb, #fc4a1a);
-    --primary-light: #f3e5ff;
-    --primary-dark: #2c0b5e;
-    --accent-orange: #fc4a1a;
-    --accent-purple: #6a11cb;
-    --text-dark: #2c0b5e;
-    --text-light: #ffffff;
+  --main-color: #0077b6;
+  --primary-gradient: linear-gradient(to right, #6a11cb, #fc4a1a);
+  --primary-light: #f3e5ff;
+  --primary-dark: #2c0b5e;
+  --accent-orange: #fc4a1a;
+  --accent-purple: #6a11cb;
+  --text-dark: #2c0b5e;
+  --text-light: #ffffff;
 }
 
+/* Reset + Base Layout */
 body {
-    background-color: #f8f9fa;
-    color: var(--text-dark);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* theme background */
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
 }
 
+/* Navbar Spacing */
+.navbar {
+  padding: 1rem 2rem;
+}
+
+/* Push content below fixed navbar */
+main {
+  margin-top: 6rem; /* adjust based on navbar height */
+  margin-bottom: 4rem; /* ensure space above footer */
+}
+
+/* Footer Styling */
+.footer {
+  background-color: var(--primary-dark);
+  color: var(--text-light);
+  padding: 3rem 0;
+  margin-top: 4rem;
+}
+
+.footer a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--accent-orange);
+}
+
+
+
+/* Card Styling */
 .card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(106, 17, 203, 0.1);
-    transition: transform 0.3s ease;
+  border: none;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 12px; */
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
+/* Buttons */
 .btn-primary {
-    background: var(--accent-purple);
-    border: none;
+  background: var(--accent-purple);
+  border: none;
 }
 
 .btn-primary:hover {
-    background: var(--accent-orange);
+  background: var(--accent-orange);
 }
 
 .btn-outline-primary {
-    border-color: var(--accent-purple);
-    color: var(--accent-purple);
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
 }
 
 .btn-outline-primary:hover {
-    background: var(--accent-purple);
-    color: white;
+  background: var(--accent-purple);
+  color: white;
 }
 
-/* Product cards specific styling */
+/* Product cards */
 .product-card {
-    border-bottom: 3px solid transparent;
-    border-image: var(--primary-gradient);
-    border-image-slice: 1;
+  border-bottom: 3px solid transparent;
+  border-image: var(--primary-gradient);
+  border-image-slice: 1;
 }
 
+.product-card .btnn {
+  background-color: var(--main-color);
+}
+
+/* Like button colors */
 .like-btn .fa-solid {
-    color: var(--accent-orange);
+  color: var(--accent-orange);
 }
 
 .like-btn .fa-regular {
-    color: var(--accent-purple);
+  color: var(--accent-purple);
 }
 
+/* Review Stars */
+.starability-basic {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.8rem;
+  gap: 5px;
+}
 
+.starability-basic input {
+  display: none;
+}
 
- /* show page css */
+.starability-basic label {
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
 
-  
-  /* Gradient Background */
-  .bg-gradient-primary-orange {
-    background: linear-gradient(to right, #6a11cb 0%, #fc4a1a 100%);
+.starability-basic input:checked ~ label,
+.starability-basic input:hover ~ label {
+  color: #ffc107;
+}
+
+.starability-basic label:hover,
+.starability-basic label:hover ~ label {
+  color: #ffc107;
+}
+
+.star-rating-display {
+  font-size: 1.3rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 3rem !important;
   }
-
-  /* Star Rating Styles */
   .starability-basic {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 1.8rem;
-    gap: 5px;
+    font-size: 1.5rem;
   }
-  
-  .starability-basic input {
-    display: none;
-  }
-  
-  .starability-basic label {
-    color: #e0e0e0;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .starability-basic input:checked ~ label,
-  .starability-basic input:hover ~ label {
-    color: #ffc107;
-  }
-  
-  .starability-basic label:hover,
-  .starability-basic label:hover ~ label {
-    color: #ffc107;
-  }
-  
-  .star-rating-display {
-    font-size: 1.3rem;
-  }
-
-  /* Card Styling */
-  .card {
-    transition: transform 0.3s;
-  }
-  .card:hover {
-    transform: translateY(-5px);
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .container {
-      margin-top: 3rem !important;
-    }
-    .starability-basic {
-      font-size: 1.5rem;
-    }
-  }
-
-
-  /* footer css */
-   
-    /* Updated Gradient Text Styles to match navbar */
-    .gradient-text {
-      background: linear-gradient(90deg, #ff8a00, #ff5252);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    
-    .gradient-text-light {
-      background: linear-gradient(90deg, #ff9e80, #ffcc80);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    .gradient-link {
-      background: linear-gradient(90deg, #ff9e80, #ff8a80);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      transition: all 0.3s ease;
-    }
-    
-    .gradient-link:hover {
-      background: linear-gradient(90deg, #ff8a80, #ff9e80);
-      -webkit-background-clip: text;
-      background-clip: text;
-      text-decoration: underline;
-    }
- 
+}

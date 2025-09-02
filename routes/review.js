@@ -1,32 +1,41 @@
-const express =  require('express');
-const Product = require('../models/Product');
+const express = require('express');
+const Course = require('../models/Course');
 const Review = require('../models/Review');
-const {validateReview , isLoggedIn} = require('../middlewares')
+const { validateReview, isLoggedIn } = require('../middlewares');
 
 const router = express.Router();
 
-router.post('/products/:productId/review' , isLoggedIn , validateReview, async(req,res)=>{
-        try{
-                let {productId} = req.params;
-                let {rating , comment} = req.body;
-                const product = await Product.findById(productId);
-                // console.log(product);
-                // creating a new review
-                const review  = new Review({rating , comment}); // let review  = new Review({...req.body}) 
-                
-                // adding review id to product array
-                product.reviews.push(review); //mongodb internally isme se id nikaal kr usse push krdega.
-                
-                await review.save();
-                await product.save();
-                req.flash('success' , 'Review added successfully');
-                res.redirect(`/products/${productId}`)
-        }
-        catch(e){
-                res.status(500).render('error' ,{err:e.message})
-        }      
-    
-})
+// ✍️ Add a Review for a Course
+router.post('/courses/:courseId/review', isLoggedIn, validateReview, async (req, res) => {
+  try {
+    let { courseId } = req.params;
+    let { rating, comment } = req.body;
 
+    const course = await Course.findById(courseId);
+    if (!course) {
+      req.flash('error', 'Course not found');
+      return res.redirect('/courses');
+    }
+
+    // create new review
+    const review = new Review({
+      rating,
+      comment,
+      author: req.user._id   // ✅ link review to user
+    });
+
+    // add review reference to course
+    course.reviews.push(review);
+
+    await review.save();
+    await course.save();
+
+    req.flash('success', 'Review added successfully');
+    res.redirect(`/courses/${courseId}`);
+  } catch (e) {
+    console.log(err);
+    res.status(500).render('error', { err: e.message });
+  }
+});
 
 module.exports = router;

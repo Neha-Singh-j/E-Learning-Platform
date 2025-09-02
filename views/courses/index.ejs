@@ -1,0 +1,36 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container py-5">
+  <!-- Page Title -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold display-5">Our Courses</h1>
+    <p class="lead fw-bold ">Explore a wide range of courses designed to boost your career in the tech industry.</p>
+  </div>
+
+  <!-- Courses Grid -->
+  <div class="row g-4">
+    <% courses.forEach(course => { %>
+      <div class="col-md-3 col-sm-6">
+        <div class="course-card h-100 d-flex flex-column">
+          <% if (course.thumbnail) { %>
+            <img src="<%= course.thumbnail %>" class="course-img" alt="<%= course.title %>">
+          <% } else { %>
+            <div class="course-img placeholder d-flex align-items-center justify-content-center">
+              <span>No Image</span>
+            </div>
+          <% } %>
+          <div class="course-body flex-fill d-flex flex-column justify-content-between p-3">
+            <div>
+              <h5 class="fw-bold"><%= course.title %></h5>
+              <p class="course-price">$<%= course.price %></p>
+            </div>
+            <a href="/courses/<%= course.slug %>" class="btn btn-primary w-100 fw-bold">View Details</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

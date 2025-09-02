@@ -1,372 +1,84 @@
+/* General */
 body {
-    height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      /*url("https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");*/
-        url("https://images.unsplash.com/photo-1561715276-a2d087060f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80");
-    background-size: cover;
-    background-position: center;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
-  }
-  .cover-container {
-    max-width: 60vw;
-  }
-  
-  .nav-link {
-    padding: 0.25rem 0;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.5);
-    margin-left: 1rem;
-    border-bottom: 0.25rem solid transparent;
-  }
-  
-  .nav-link:hover {
-    color: rgba(255, 255, 255, 0.5);
-    border-bottom-color: rgba(255, 255, 255, 0.5);
-  }
-  
-  .nav-link.active {
-    color: white;
-    border-bottom-color: white;
-  }
-  
-  .btn-secondary,
-  .btn-secondary:hover {
-    color: #333;
-    text-shadow: none;
-  }
-
-
-
-  /* reviews css--------------------------------------------------------------- */
-
-
-
-  /* Review Page Styles */
-.product-detail-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  background-color: darkblue;
+  color: #f1f1f1;
+  font-family: "Inter", sans-serif;
+  /* margin-top: 10px; */
+  padding-top: 7rem;
 }
 
-.product-images {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+h1, h2, h3, h5, h6 {
+  color: #fff;
 }
 
-.main-image {
-  width: 100%;
-  height: 400px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+p {
+  color: #d1d1d1;
 }
 
-.main-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+/* Hero Section */
+.hero h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: #bbb;
+}
+.hero img {
+  max-width: 400px;
+  border-radius: 1rem;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.5);
 }
 
-.thumbnail-container {
-  display: flex;
-  gap: 1rem;
+/* Course Cards */
+.course-card {
+  background: #1a1f2b;
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.7);
+}
+.course-card h5 {
+  color: #fff;
 }
 
-.thumbnail {
-  width: 80px;
-  height: 80px;
-  border-radius: 4px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 2px solid transparent;
+/* Partner Logos */
+.partner-logo {
+  max-height: 60px;
+  /* filter: brightness(0) invert(1); */
+  transition: transform 0.3s ease;
+}
+.partner-logo:hover {
+  transform: scale(1.1);
 }
 
-.thumbnail:hover, .thumbnail.active {
-  border-color: var(--primary-orange);
-}
-
-.product-info {
-  padding: 1rem 0;
-}
-
-.product-title {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: var(--dark-bg);
-}
-
-.product-price {
-  font-size: 1.5rem;
-  color: var(--primary-orange);
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.product-description {
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.actions {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.quantity-selector {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.quantity-btn {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ddd;
-  background-color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.quantity-input {
-  width: 50px;
-  height: 30px;
-  text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.primary-btn {
-  background-color: var(--primary-orange);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 4px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.primary-btn:hover {
-  background-color: var(--secondary-orange);
-}
-
-.secondary-btn {
-  background-color: white;
-  color: var(--primary-orange);
-  border: 1px solid var(--primary-orange);
-  padding: 0.8rem 1.5rem;
-  border-radius: 4px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.secondary-btn:hover {
-  background-color: #FFF3E0;
-}
-
-/* Reviews Section */
-.reviews-section {
-  margin-top: 3rem;
-  grid-column: 1 / -1;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--dark-bg);
-  border-bottom: 2px solid var(--accent-yellow);
-  padding-bottom: 0.5rem;
-  display: inline-block;
-}
-
-.reviews-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.review-card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.review-author {
-  font-weight: 600;
-  color: var(--dark-bg);
-}
-
-.review-rating {
-  color: var(--accent-yellow);
-  font-weight: 700;
-}
-
-.review-date {
-  color: #777;
-  font-size: 0.8rem;
-}
-
-.review-content {
-  line-height: 1.6;
-}
-
-
-
-
-
-/* its home page css--------------------- */
-/* Carousel Styles */
-.carousel {
-    margin-bottom: 4rem;
-}
-
-.carousel-item {
-    height: 70vh;
-    min-height: 400px;
-    background: no-repeat center center;
-    background-size: cover;
-}
-
-.carousel-item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.carousel-caption {
-    bottom: 3rem;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 2rem;
-    border-radius: 0.5rem;
-}
-
-.carousel-caption h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-caption p {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
-}
-
-.carousel-caption .btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.1rem;
-}
-
-/* Testimonials Styles */
-.testimonials .card {
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.testimonials .card:hover {
-    transform: translateY(-10px);
-}
-
-.testimonials .card-body {
-    padding: 2rem;
-}
-
-.testimonials .card-title {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.testimonials .card-text {
-    font-style: italic;
-    color: #555;
-}
-
-
+/* Testimonials */
 .testimonial-card {
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-        .testimonial-img {
-            border: 3px solid #6a11cb;
-            object-fit: cover;
-        }
-        .testimonial-rating {
-            color: #ffd700;
-            font-size: 1.2rem;
-        }
-        .carousel-caption {
-            background: rgba(106, 17, 203, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            bottom: 40px;
-        }
-        .carousel-caption h2 {
-            font-family: 'Arial Rounded MT Bold', sans-serif;
-            color: #ffd700;
-        }
-        .carousel-control-prev-icon, 
-        .carousel-control-next-icon {
-            background-color: #6a11cb;
-            border-radius: 50%;
-            padding: 15px;
-        }
+  background: #1a1f2b;
+  border-radius: 1rem;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.5);
+}
+.testimonial-card h6 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+.testimonial-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+}
 
+/* CTA */
+.cta h2 {
+  font-size: 2rem;
+}
+.cta .btn {
+  border-radius: 30px;
+}
+.cta .btn:hover {
+  background-color: #ff6f61;
+  border-color: #ff6f61;
+  color: #fff;
+}
 
-        
-    /* Add these styles to your existing style section */
-    #homeCarousel {
-        height: 80vh; /* Adjust this value as needed */
-        margin-bottom: 0; /* Remove any default margin */
-    }
-    
-    #homeCarousel .carousel-inner, 
-    #homeCarousel .carousel-item, 
-    #homeCarousel .carousel-item img {
-        height: 100%;
-        object-fit: cover; /* Ensures images cover the space without distortion */
-    }
-    
-    /* Optional: Adjust the caption position if needed */
-    .carousel-caption {
-        bottom: 20%; /* Adjust this to position the caption vertically */
-    }
-    
-    /* Ensure testimonials section starts right after carousel */
-    .testimonials {
-        padding-top: 0;
-    }
-   
-
-
-   

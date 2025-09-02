@@ -1,0 +1,70 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<style>
+  body {
+    background-color:blue; /* light blue */
+    padding-top:70px;
+    color: #fdfdfd;
+  }
+
+  .card {
+
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .list-group-item {
+    background: #fdfdfd;
+    border-left: 4px solid #007bff;
+  }
+
+  h1, h4 {
+    color: black;
+  }
+</style>
+
+<div class="container py-5">
+  <div class="row">
+    <!-- Left Section -->
+    <div class="col-md-8">
+      <h1><%= course.title %></h1>
+
+      <% if (course.thumbnail) { %>
+        <img src="<%= course.thumbnail %>" class="img-fluid rounded mb-3" alt="">
+      <% } %>
+
+      <p><%= course.description %></p>
+
+      <h4 class="mt-4">Syllabus</h4>
+      <ul class="list-group">
+        <% course.syllabus.forEach(item => { %>
+          <li class="list-group-item">
+            <strong><%= item.title %></strong>: <%= item.content %>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="col-md-4">
+      <div class="card p-3">
+        <p><strong>Price:</strong> $<%= course.price %></p>
+        <p><strong>Duration:</strong> <%= course.duration %></p>
+        <p><strong>Seats:</strong> <%= course.seats %></p>
+        <p>
+          <strong>Tags:</strong>
+          <% course.tags.forEach(tag => { %>
+            <span class="badge bg-success"><%= tag %></span>
+          <% }) %>
+        </p>
+
+        <form action="/user/cart/add/<%= course._id %>" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-primary w-100">Enroll</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

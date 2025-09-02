@@ -1,6 +1,7 @@
-const Product = require("./models/Product");
+const Product = require("./models/Course");
 const { productSchema } = require("./schema");
 const { reviewSchema } = require("./schema");
+
 
 const validateProduct = (req,res,next)=>{
     const {name, img, price , desc} = req.body;
@@ -64,5 +65,23 @@ const isProductAuthor = async(req,res,next)=>{
     next();
 }
 
+// Role-based authorization
+const authorize = (...roles) => {
+    return (req, res, next) => {
+        if (!req.user || !roles.includes(req.user.role)) {
+            req.flash('error', 'You do not have permission to perform this action');
+            return res.redirect('back'); // or handle with res.status(403).json({...}) for API
+        }
+        next();
+    };
+};
+exports.authorize = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({ message: "User role not authorized" });
+    }
+    next();
+  };
+};
 
-module.exports = {validateProduct ,validateReview , isLoggedIn , isSeller , isProductAuthor } ;
+module.exports = { validateProduct, validateReview, isLoggedIn, isSeller, isProductAuthor, authorize };

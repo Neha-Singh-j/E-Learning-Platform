@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default: "buyer",
+    enum: ['student','instructor','admin'],
+    default: 'student'
   },
   gender: {
     type: String,
@@ -21,13 +22,13 @@ const userSchema = new mongoose.Schema({
   wishlist: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
+      ref: "Course",
     },
   ],
   cart: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
+      ref: "Course",
     },
   ],
 });

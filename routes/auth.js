@@ -3,22 +3,37 @@ const User = require("../models/User");
 const passport = require("passport");
 const router = express.Router();
 
+// 📝 Registration Page
 router.get("/register", (req, res) => {
   res.render("auth/signup");
 });
 
+// 📝 Register User
 router.post("/register", async (req, res) => {
-  let { username, password, email, role, gender } = req.body;
-  let user = new User({ username, email, gender, role });
-  let newUser = await User.register(user, password);
-  // res.send(newUser);
-  res.redirect("/login");
+  try {
+    let { username, password, email, role, gender } = req.body;
+
+    // default role = student if not provided
+    if (!role) role = "student";
+
+    let user = new User({ username, email, gender, role });
+    let newUser = await User.register(user, password);
+
+    req.flash("success", "Registration successful. Please login.");
+    res.redirect("/login");
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "Registration failed.");
+    res.redirect("/register");
+  }
 });
 
+// 🔑 Login Page
 router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
+// 🔑 Login User
 router.post(
   "/login",
   passport.authenticate("local", {
@@ -26,12 +41,19 @@ router.post(
     failureMessage: true,
   }),
   function (req, res) {
-    // console.log(req.user , "User");
     req.flash("success", `Welcome Back ${req.user.username}`);
-    res.redirect("/products");
+
+    // redirect based on role
+    if (req.user.role === "instructor") {
+      // res.redirect("/instructor/dashboard");
+      res.redirect("/courses"); // temp redirect to courses
+    } else {
+      res.redirect("/courses"); // default for students
+    }
   }
 );
 
+// 🚪 Logout User
 router.get("/logout", (req, res) => {
   req.logout(() => {
     req.flash("success", "Logged out successfully");

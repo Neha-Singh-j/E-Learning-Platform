@@ -1,65 +1,157 @@
-<%-include('../partials/header')%>
-<%-include('../partials/navbar')%>
-<%-include('../partials/flash')%>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/flash') %>
 
-<section class="container py-4" style="margin-top: 80px;">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="display-5 fw-bold gradient-text" style="background: linear-gradient(to right, #6a11cb, #fc4a1a); -webkit-background-clip: text; background-clip: text; color: transparent;">MY CART</h1>
-    <span class="badge rounded-pill px-3 py-2" style="background: linear-gradient(to right, #6a11cb, #fc4a1a); color: white;">
-      <%= user.cart.length %> Items
-    </span>
-  </div>
+<style>
+  body {
+    background-color: #f8f9fc; /* light background */
+    color: #333;
+  }
+
+  .cart-section {
+    margin-top: 60px;
+  }
+
+  .cart-title-page {
+    font-weight: 600;
+    font-size: 28px;
+    color: #1a1f2b;
+    margin-bottom: 25px;
+  }
+
+  /* Cart Item Card */
+  .cart-card {
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+  }
+
+  .cart-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .cart-img {
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
+    height: 100%;
+  }
+
+  .cart-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1f2b;
+  }
+
+  .cart-author {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  .cart-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1f2b;
+  }
+
+  .remove-btn {
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    cursor: pointer;
+  }
+
+  .remove-btn:hover {
+    color: #ef4444;
+  }
+
+  /* Order Summary Card */
+  .order-card {
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .order-card h5 {
+    font-weight: 600;
+    color: #1a1f2b;
+  }
+
+  .order-total {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2563eb;
+  }
+
+  .checkout-btn {
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .checkout-btn:hover {
+    background: #1e40af;
+  }
+</style>
+
+<section class="container cart-section">
+  <h1 class="cart-title-page">Shopping Cart</h1>
 
   <div class="row">
     <!-- Cart Items -->
     <div class="col-lg-8">
-      <% for(let item of user.cart){ %>
-      <div class="card mx-auto mb-4 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img class="img-fluid h-100" src="<%=item.img%>" alt="<%=item.name%>" style="object-fit: cover; min-height: 180px;">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body p-4">
-              <div class="d-flex justify-content-between align-items-start">
-                <h5 class="card-title fw-bold mb-2" style="color: #2c0b5e;"><%=item.name%></h5>
-                <span class="fs-5 fw-bold" style="color: #fc4a1a;">$ <%=item.price%></span>
-              </div>
-              <p class="card-text text-muted mb-3"><%=item.desc%></p>
-              <div class="d-flex justify-content-end">
-                <button class="btn btn-outline-danger btn-sm">Remove</button>
-              </div>
+      <% for (let item of user.cart) { %>
+        <div class="card mb-3 cart-card">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-3">
+              <img class="img-fluid cart-img" src="<%= item.thumbnail %>" alt="<%= item.title %>">
+            </div>
+            <div class="col-md-7 p-3">
+              <h5 class="cart-title mb-1"><%= item.title %></h5>
+              <p class="cart-author mb-0">By <%= item.author || "Unknown" %></p>
+            </div>
+            <div class="col-md-2 text-end p-3">
+              <span class="cart-price">$ <%= item.price %></span>
+              <form action="/cart/remove/<%= item._id %>" method="POST" class="d-inline">
+                <button type="submit" class="remove-btn ms-2">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </form>
             </div>
           </div>
         </div>
-      </div>
       <% } %>
     </div>
 
     <!-- Order Summary -->
     <div class="col-lg-4">
-      <div class="card border-0 shadow-sm" style="border-radius: 12px;">
-        <div class="card-header py-3" style="background: linear-gradient(to right, #6a11cb, #fc4a1a); color: white;">
-          <h5 class="mb-0 fw-bold">Order Summary</h5>
-        </div>
-        <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <% for(let item of user.cart){ %>
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2">
-              <span style="color: #2c0b5e;"><%=item.name%></span>
-              <span class="fw-bold" style="color: #fc4a1a;">$ <%=item.price%></span>
+      <div class="card order-card p-3">
+        <h5 class="mb-3">Summary</h5>
+        <ul class="list-group list-group-flush mb-3">
+          <% for (let item of user.cart) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+              <span><%= item.title %></span>
+              <span>$ <%= item.price %></span>
             </li>
-            <% } %>
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2">
-              <span class="fw-bold" style="color: #2c0b5e;">Total Amount</span>
-              <span class="fw-bold fs-5" style="color: #6a11cb;">$ <%=totalAmount%></span>
-            </li>
-          </ul>
-          <button class="btn w-100 mt-3 py-2 fw-bold" style="background: linear-gradient(to right, #6a11cb, #fc4a1a); color: white; border: none;">Proceed to Checkout</button>
-        </div>
+          <% } %>
+          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+            <span>Subtotal</span>
+            <span>$ <%= totalAmount %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+            <span class="fw-bold">Total</span>
+            <span class="order-total">$ <%= totalAmount %></span>
+          </li>
+        </ul>
+        <button class="btn w-100 py-2 checkout-btn">Checkout</button>
       </div>
     </div>
   </div>
 </section>
 
-<%-include('../partials/footer')%>
+<%- include('../partials/footer') %>
